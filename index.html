@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>Test HTML5 Desktop Notification Plugin</title>
+        <!--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> -->
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="jquery.jwNotify.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $('#simple_notify_button').click(function(e){
+                    e.preventDefault();
+                    $.jwNotify({
+                        image: $('form#simple_notify #image').val(),
+                        title: $('form#simple_notify #title').val(),
+                        body:  $('form#simple_notify #body').val(),
+                        dir:  $('form#simple_notify #dir').val(),
+                        onshow: function(){
+                            console.log('function closed');
+                        }
+                    });
+                });
+
+
+                $('#html_notify_button').click(function(e){
+                    e.preventDefault();
+                    $.jwNotifyHTML({
+                        url: $('form#html_notify #url').val()
+                    });
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <h2>jQuery HTML5 Desktop Notification</h2>
+        <h5>Links:</h5>
+        <ul>
+            <li><a href="http://athousandnodes.com">a thousnad nodes..</a></li>
+            <li><a href="http://plugins.jquery.com/project/desktop-notification">Desktop Notify Plugin page</a></li>
+        </ul>
+        <div class="content clearfix">
+            <p>This jQuery Plugin makes it easier to generate HTML5 Desktop Notifications.<br>
+                The Plugin is still under development. More features are being added currently</p>
+            <p>The notifications have been timed to stay for default duration</p>
+            <b>Simple Notification</b>
+            <form id="simple_notify" onSubmit="false">
+                <table>
+                    <tr>
+                        <td><lable>Image</lable></td>
+                    <td><input id="image" value="testpilot.png" /></td>
+                    </tr>
+                    <tr>
+                        <td><lable>Title</lable></td>
+                    <td><input id="title" value="Test Title" /></td>
+                    </tr>
+                    <tr>
+                        <td><lable>Message</lable></td>
+                    <td><input id="body" value="Test Body" /></td>
+                    </tr>
+                    <tr>
+                        <td><lable>Direction</lable></td>
+                    <td>
+                        <select id="dir" value="Test Body">
+                            <option value="ltr">ltr</option>
+                            <option value="rtl">rtl</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button id="simple_notify_button">Show Notification</button></td>
+                    </tr>
+                </table>
+            </form>
+
+            <b>HTML Notification</b>
+            <form id="html_notify" onSubmit="false">
+                <table>
+                    <tr>
+                        <td><lable>URL</lable></td>
+                    <td><input id="url" value="test.html" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button id="html_notify_button">Show Notification</button></td>
+                    </tr>
+                </table>
+            </form>
+
+
+            <p>Basic Usage(Simple Notification):</p>
+            <div class="codeblock"><code>$.jwNotify({<br>&nbsp;&nbsp;&nbsp; image : 'path-to-image-file',<br>&nbsp;&nbsp;&nbsp; title: 'title-to-be-shown',<br>&nbsp;&nbsp;&nbsp; body: 'body-of-the-notification',<br>&nbsp;&nbsp;&nbsp; timeout: 10000<br>});</code></div>
+            <p>Basic Usage(HTML Notification):</p>
+            <div class="codeblock"><code>$.jwNotifyHTML({<br>&nbsp;&nbsp;&nbsp; url: 'url-to-the-page-to-be-shown-in-notification',<br>&nbsp;&nbsp;&nbsp; timeout: 10000<br>});</code></div>
+            <p>Available Options and their Defaults(Simple Notification):</p>
+<div class="codeblock"><code>image : null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Image to be shown in the notification area<br>title: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Title<br>body: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Body of the notification to be shown<br>timeout: 5000,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Time in milliseconds for which this notification should be shown; A value equal to 0 will make it the notification persistent<br>dir : null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Direction(rlt, ltr) of the text shown in the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //notification<br>onclick: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onclick event on the notification<br>onshow: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onshow event<br>onerror: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onerror event<br>onclose: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onclose event<br>id: null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Identifier for the notifiction. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //This is used to identify the notification<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //message shown.</code></div>
+<p>Available Options and their Defaults(HTML Notification):</p>
+<div class="codeblock"><code>url: null //URL of the page to be shown in the notification<br>timeout: 5000,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Time in milliseconds for which this notification should be shown; A value equal to 0 will make the notification persistent <br>onclick: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onclick event on the notification<br>onshow: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onshow event<br>onerror: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onerror event<br>onclose: null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Callback for onclose event<br>id: null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Identifier for the notifiction. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //This is used to identify the notification<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //message shown.</code></div>
+
+        </div>
+
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-10965684-4']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </body>
+</html>
